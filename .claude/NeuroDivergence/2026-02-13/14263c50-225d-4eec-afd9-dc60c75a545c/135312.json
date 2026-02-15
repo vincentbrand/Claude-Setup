@@ -1,0 +1,14 @@
+{
+  "date": "2026-02-13",
+  "time": "13:53:12",
+  "uuid": "3961e5c2-86dd-412a-b943-c99e22eb3b8b",
+  "session_id": "14263c50-225d-4eec-afd9-dc60c75a545c",
+  "transcript_path": "/Users/vincentbrand/.claude/projects/-Users-vincentbrand-Documents-Dev-Ethicore/14263c50-225d-4eec-afd9-dc60c75a545c.jsonl",
+  "cwd": "/Users/vincentbrand/Documents/Dev/Ethicore",
+  "permission_mode": "plan",
+  "hook_event_name": "UserPromptSubmit",
+  "prompt": "analyse the system that is standing now. i want expand on the sites and urls that are pulled, right now i have bbc, fox and al jazeera. i want to expand this list with https://www.nu.nl/\n \u2014 NU.nl: major national news portal\n\nhttps://www.ad.nl/\n \u2014 Algemeen Dagblad (news + local)\n\nhttps://www.telegraaf.nl/\n \u2014 De Telegraaf news site\n\nhttps://www.nos.nl/\n \u2014 NOS public broadcaster news\n\nhttps://www.volkskrant.nl/\n \u2014 De Volkskrant news\n\nhttps://www.rtlnieuws.nl/\n \u2014 RTL Nieuws online\n\nhttps://www.nrc.nl/\n \u2014 NRC Handelsblad news\n\nhttps://www.trouw.nl/\n \u2014 Trouw newspaper\u2019s site\n\nhttps://nieuws.nl/\n \u2014 NieuwsNL (aggregated national/local news)\n\nEnglish-language Dutch news (for expats/international audiences):\n\nhttps://www.dutchnews.nl/\n \u2014 DutchNews.nl (news in English)\n\nhttps://nltimes.nl/\n \u2014 NL Times (English-language Dutch news) these websites, which are specific for the dutch news.",
+  "requireTests": false,
+  "requireGit": false,
+  "requireDoc": true
+}

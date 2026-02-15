@@ -1,0 +1,14 @@
+{
+  "date": "2026-02-12",
+  "time": "15:04:13",
+  "uuid": "2ec227cb-e652-4700-a224-eeeb536dc2c4",
+  "session_id": "922ca8bb-da1d-48ef-bcd9-e4feae2bda03",
+  "transcript_path": "/Users/vincentbrand/.claude/projects/-Users-vincentbrand-Documents-Dev-Ethicore/922ca8bb-da1d-48ef-bcd9-e4feae2bda03.jsonl",
+  "cwd": "/Users/vincentbrand/Documents/Dev/Ethicore",
+  "permission_mode": "bypassPermissions",
+  "hook_event_name": "UserPromptSubmit",
+  "prompt": "check my hooks, just run ill see if it works",
+  "requireTests": false,
+  "requireGit": false,
+  "requireDoc": false
+}

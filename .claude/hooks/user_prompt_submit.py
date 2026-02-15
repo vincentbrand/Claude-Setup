@@ -10,7 +10,7 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 
-NEURAL_DIR = Path(".claude") / "NeuralDivergence"
+NEURAL_DIR = Path(".claude") / "NeuroDivergence"
 
 # Keywords/patterns that signal requirements
 TEST_SIGNALS = [
@@ -49,9 +49,9 @@ def evaluate_prompt(prompt: str) -> dict:
 
 def main():
     # Read the prompt from stdin (Claude Code pipes it in)
-    prompt = sys.stdin.read().strip()
+    raw_input = sys.stdin.read().strip()
 
-    if not prompt:
+    if not raw_input:
         sys.exit(0)
 
     # Ensure directory exists
@@ -59,26 +59,40 @@ def main():
 
     now = datetime.now()
     session_id = str(uuid.uuid4())
-    requirements = evaluate_prompt(prompt)
 
-    # Build the session context
+    # Parse the incoming JSON from Claude Code
+    try:
+        prompt_data = json.loads(raw_input)
+    except json.JSONDecodeError:
+        prompt_data = {"prompt": raw_input}
+
+    # The actual user prompt text for evaluation
+    user_prompt = prompt_data.get("prompt", raw_input)
+    requirements = evaluate_prompt(user_prompt)
+
+    # Build the session context — spread prompt_data fields as proper JSON
     context = {
         "date": now.strftime("%Y-%m-%d"),
         "time": now.strftime("%H:%M:%S"),
         "uuid": session_id,
-        "prompt": prompt,
+        **prompt_data,
         "requireTests": requirements["requireTests"],
         "requireGit": requirements["requireGit"],
         "requireDoc": requirements["requireDoc"],
     }
 
-    # Write file with datetime stamp as filename
-    filename = now.strftime("%Y%m%d_%H%M%S") + f"_{session_id[:8]}.json"
-    filepath = NEURAL_DIR / filename
+    # Build path: NeuralDivergence / YYYY-MM-DD / session_id /
+    cc_session_id = prompt_data.get("session_id", session_id)
+    session_dir = NEURAL_DIR / now.strftime("%Y-%m-%d") / cc_session_id
+    session_dir.mkdir(parents=True, exist_ok=True)
+
+    # Write file with timestamp as filename
+    filename = now.strftime("%H%M%S") + ".json"
+    filepath = session_dir / filename
 
     filepath.write_text(json.dumps(context, indent=2))
 
-    # Also write a "latest.json" symlink/file for easy access by post/stop hooks
+    # Also write a "latest.json" at the root for easy access by post/stop hooks
     latest = NEURAL_DIR / "latest.json"
     latest.write_text(json.dumps(context, indent=2))
 
