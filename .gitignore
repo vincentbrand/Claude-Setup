@@ -70,3 +70,7 @@ coverage/
 # Claude Code
 .claude/cache/
 .claude/logs/
+
+
+
+.claude/NeuroDivergence/
